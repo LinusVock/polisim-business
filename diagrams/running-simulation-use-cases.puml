@@ -45,7 +45,7 @@ UC1 ..> UC2 <<include>>
 Supervisor --> UC3
 
 Officer --> UC4
-UC4 ..> UC5
+Officer --> UC5
 Supervisor --> UC5
 Officer --> UC6
 Supervisor --> UC7
