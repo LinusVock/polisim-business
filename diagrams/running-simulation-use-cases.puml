@@ -1,0 +1,74 @@
+@startuml
+left to right direction
+ 
+actor Officer
+actor Supervisor
+
+rectangle "Simulation registration" {
+	usecase "register for simulation" as UC1
+	usecase "find date and time" as UC2
+	usecase "set simulation date" as UC3
+}
+
+rectangle "Simulation preperation" {
+	usecase "arrive at simulation space" as UC4
+	usecase "register attendence" as UC5
+	usecase "put on VR equipment" as UC6
+	usecase "generate simulation" as UC7
+	usecase "prompt simulation AI with description" as UC7_0
+	usecase "prompt simulation AI with bodycam-footage" as UC7_1
+	usecase "prompt simulation AI with operation report" as UC7_2
+	usecase "start simulation" as UC8
+}
+
+rectangle "Run simulation" {
+	usecase "load user character into simulation" as UC9
+	usecase "interact with simulation" as UC10
+	usecase "log user vitals, emotions, behavior" as UC11
+	usecase "stop simulation" as UC12
+	usecase "reason: time limit" as UC12_0
+	usecase "reason: disaster" as UC12_1
+	usecase "reason: success" as UC12_2
+	usecase "restart simulation" as UC13
+}
+
+rectangle "Simulation ending" {
+	usecase "unequip" as UC14
+	usecase "save logged data" as UC15
+	usecase "save exact simulation parameters and data" as UC16
+	usecase "save video of simulated operation" as UC17
+	usecase "register attendence ending" as UC18
+}
+ 
+Officer --> UC1
+UC1 ..> UC2 <<include>>
+Supervisor --> UC3
+
+Officer --> UC4
+UC4 ..> UC5
+Supervisor --> UC5
+Officer --> UC6
+Supervisor --> UC7
+UC7 ..> UC7_0: <<extend>>
+UC7 ..> UC7_1: <<extend>>
+UC7 ..> UC7_2: <<extend>>
+Supervisor --> UC8
+
+Supervisor --> UC9
+Officer --> UC10
+Supervisor --> UC11
+Supervisor --> UC12
+UC12 ..> UC12_0: <<extend>>
+UC12 ..> UC12_1: <<extend>>
+UC12 ..> UC12_2: <<extend>>
+UC12 ..> UC13: <<include>>
+
+Officer --> UC14
+Supervisor --> UC15
+UC15 ..> UC16: <<include>>
+UC15 ..> UC17: <<include>>
+
+Officer --> UC18
+Supervisor --> UC18
+  
+@enduml

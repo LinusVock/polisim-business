@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+ 
+actor Client
+
+rectangle "Acquire POLISIM Product" {
+	usecase "contact sales" as UC1
+	usecase "choose offer" as UC2
+	usecase "buy product" as UC3
+	usecase "arrange installation date" as UC4
+}
+
+rectangle "Setup simulation environment" {
+	usecase "determine physical simulation space" as UC5
+	usecase "retrieve hardware" as UC6
+	usecase "setup physical simulation environment" as UC7
+	usecase "setup POLISIM software" as UC8
+	usecase "test POLISIM setup" as UC9
+	usecase "determine simulation supervisors" as UC10
+	usecase "train simulation supervisors" as UC11
+} 
+ 
+Client --> UC1 
+UC1 ..> UC2: <<include>>
+UC2 ..> UC3: <<include>>
+Client --> UC4
+
+Client --> UC5
+Client --> UC6
+UC6 ..> UC7: <<include>>
+Client --> UC8
+UC8 ..> UC9: <<include>>
+Client --> UC10
+UC10 ..> UC11: <<include>>
+  
+@enduml
