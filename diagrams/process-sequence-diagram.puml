@@ -1,0 +1,49 @@
+@startuml
+start
+if (Wants to use Polisim) then (yes)
+
+    'registration process
+    if (is registered) then (yes)
+    else (no)
+        :register for simulation;
+        while (time and date is not set) is (yes)
+        :find time and date;
+        if (time and date fits) then (yes)
+            :set time and date;
+        else (no)
+        endif
+        endwhile
+    endif
+
+    'simulation preperation
+    :arrive at simulation space;
+	:register attendence;
+	:put on VR equipment;
+	:generate simulation;
+	:prompt simulation AI with description;
+	:prompt simulation AI with bodycam-footage;
+	:prompt simulation AI with operation report;
+	:start simulation;
+
+    'run simulation
+    :load user character into simulation;
+	:interact with simulation;
+	:log user vitals, emotions, behavior;
+	:stop simulation;
+	:reason time limit;
+	:reason disaster;
+	:reason success;
+	:restart simulation;
+    
+    'simulation ending
+    :unequip;
+	:save logged data;
+	:save exact simulation parameters and data;
+	:save video of simulated operation;
+	:register attendence ending;
+
+else (no)
+  :end the process;
+endif
+stop
+@enduml
